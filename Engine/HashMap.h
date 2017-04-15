@@ -32,19 +32,19 @@ public:
 
     int getSize() { return this->size; }
 
-    bool containsKey(K& key)
+    bool containsKey(K* key)
     {
         int hash = this->hashify(key);
         if (this->buckets[hash]) {
                 for (BucketElement* b = this->buckets[hash] ; b ; b = b->next) {
-                        if (b->key == key)
+                        if (*b->key == *key)
                                 return true;
                 }
         }
         return false;
     }
 
-    void put(K& key, V& value)
+    void put(K* key, V* value)
     {
         BucketElement* e = new BucketElement();
         e->key = key;
@@ -54,13 +54,13 @@ public:
         this->maintain();
     }
 
-    V get(K& key)
+    V* get(K* key)
     {
         int hash = this->hashify(key);
         if (this->buckets[hash] != NULL) {
             BucketElement* b = this->buckets[hash];
             while(b != NULL) {
-                if (b->key == key)
+                if (*b->key == *key)
                     return b->value;
                 b = b->next;
             }
@@ -68,15 +68,15 @@ public:
         return (V)NULL;
     }
     
-    V remove(K& key)
+    V* remove(K* key)
     {
         int hash = this->hashify(key);
         if (this->buckets[hash] != NULL) {
             BucketElement* prev = NULL;
             BucketElement* b = this->buckets[hash];
             while(b != NULL) {
-                if (b->key == key) {
-                    V v = b->value;
+                if (*b->key == *key) {
+                    V* v = b->value;
                     if (prev != NULL)
                         prev->next = b->next;
                     else
@@ -89,15 +89,15 @@ public:
                 b = b->next;
             }
         }
-        return (V) NULL;
+        return NULL;
     }
 
 private:
     class BucketElement
     {
     public:
-        K key;
-        V value;
+        K* key;
+        V* value;
         BucketElement* next;
         BucketElement(){}
         ~BucketElement(){}
@@ -133,10 +133,10 @@ private:
 
     }
 
-    int hashify(K& key)
+    int hashify(K* key)
     {
         std::hash<K> hasher;
-        int hash = static_cast<int>(hasher(key)) % this->numBuckets;
+        int hash = static_cast<int>(hasher(*key)) % this->numBuckets;
         return hash;
     }
 

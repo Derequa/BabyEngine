@@ -16,23 +16,23 @@ int main(int argc, char** argv)
 	string key0 = "Derek";
 	string value0 = "Terra";
         cout << "Putting first key/value pair in..." << endl;
-	map->put(key0, value0);
+	map->put(&key0, &value0);
         cout << "Checking size..." << endl;
 	cout << map->getSize() << endl;
         cout << "Checking with contains..." << endl;
-        cout << map->containsKey(key0) << endl;
+        cout << map->containsKey(&key0) << endl;
         cout << "Creating second key/value pair..." << endl;
         string key1 = "Jacob";
 	string value1 = "Kellany";
         cout << "Checking invalid key with contains..." << endl;
-        cout << map->containsKey(key1) << endl;
+        cout << map->containsKey(&key1) << endl;
         cout << "Putting second key/value pair in..." << endl;
-	map->put(key1, value1);
+	map->put(&key1, &value1);
         cout << "Checking with contains..." << endl;
-        cout << map->containsKey(key1) << endl;
+        cout << map->containsKey(&key1) << endl;
         cout << "Checking size..." << endl;
 	cout << map->getSize() << endl;
-        
+        /*
         HashMap<int, int> map1;
         for (int i = 0 ; i < 1000 ; i++) {
             cout << "Adding #" + std::to_string(i) << endl;
@@ -69,20 +69,20 @@ int main(int argc, char** argv)
                 cout << flush;
                 return 1;
             }
-        }
+        }*/
         
         
         HashSet<string> set;
-        set.add(key0);
-        set.add(value0);
+        set.add(&key0);
+        set.add(&value0);
         cout << "Checking with contains..." << endl;
-        if (!set.contains(key0)) {
+        if (!set.contains(&key0)) {
             cout << "FAILED set does not contain: " + key0 << endl;
             cout << flush;
             return 1;
         }
         
-        if (!set.contains(value0)) {
+        if (!set.contains(&value0)) {
             cout << "FAILED set does not contain: " + value0 << endl;
             cout << flush;
             return 1;
@@ -92,17 +92,17 @@ int main(int argc, char** argv)
 	cout << set.size() << endl;
         cout << "Removing from set..." << endl;
         
-        set.remove(key0);
-        set.remove(value0);
+        set.remove(&key0);
+        set.remove(&value0);
         
         cout << "Checking with contains..." << endl;
-        if (set.contains(key0)) {
+        if (set.contains(&key0)) {
             cout << "FAILED set does contain: " + key0 << endl;
             cout << flush;
             return 1;
         }
         
-        if (set.contains(value0)) {
+        if (set.contains(&value0)) {
             cout << "FAILED set does contain: " + value0 << endl;
             cout << flush;
             return 1;

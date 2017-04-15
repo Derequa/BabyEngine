@@ -23,9 +23,9 @@ public:
     ~HashSet(){}
     
     int size() { return this->map.getSize(); }
-    void add(E& e) {this->map.put(e, e); }
-    bool contains(E& e) { return this->map.containsKey(e); }
-    E remove(E& e) { return this->map.remove(e); }
+    void add(E* e) {this->map.put(e, e); }
+    bool contains(E* e) { return this->map.containsKey(e); }
+    E* remove(E* e) { return this->map.remove(e); }
     
 private:
     HashMap<E, E> map;

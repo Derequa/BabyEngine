@@ -15,5 +15,5 @@
 
 EngineComponent::EngineComponent(Engine* instance, long guid, int typeID) : EngineObject(instance, guid, typeID) {}
 EngineComponent::EngineComponent(ObjectInit& init) : EngineComponent(init.engine, init.guid, init.typeID) {}
-EngineComponent::EngineComponent(Engine* instance, long guid, int typeID, EngineComponent& parent) : EngineObject(instance, guid, typeID) {}
-EngineComponent::EngineComponent(ObjectInit& init, EngineComponent& parent) : EngineComponent(init.engine, init.guid, init.typeID, parent) {}
+EngineComponent::EngineComponent(Engine* instance, long guid, int typeID, EngineComponent* parent) : EngineObject(instance, guid, typeID) {}
+EngineComponent::EngineComponent(ObjectInit& init, EngineComponent* parent) : EngineComponent(init.engine, init.guid, init.typeID, parent) {}

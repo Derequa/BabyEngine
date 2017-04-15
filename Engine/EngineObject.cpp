@@ -10,6 +10,8 @@ EngineObject::EngineObject(Engine* instance, long guid, int typeID)
 
 EngineObject::EngineObject(ObjectInit& init) : EngineObject(init.engine, init.guid, init.typeID) {}
 
+EngineObject::~EngineObject() { this->engine->removeObject(this->guid); }
+
 size_t EngineObject::operator()( const EngineObject & key ) const
 {
     std::hash<long> hasher;

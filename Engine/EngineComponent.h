@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   EngineComponent.h
  * Author: dsbatts
@@ -23,18 +17,26 @@ public:
     virtual void update()=0;
     virtual void setup()=0;
     EngineComponent* getParent();
-    const HashSet<EngineComponent> getChildren();
-    EngineComponent* getFirstChildOfType(int typeID);
-    HashSet<EngineComponent>* getAllChildrenOfType(int typeID);
+    EngineComponent* getComponent(int typeID);
+    const HashSet<EngineComponent>& getComponents();
+    HashSet<EngineComponent>* getComponents(int typeID);
+    EngineComponent* getComponentInChildren(int typeID);
+    HashSet<EngineComponent>* getComponentsInChildren(int typeID);
+    EngineComponent* getComponentInParent(int typeID);
+    HashSet<EngineComponent>* getComponentsInParent(int typeID);
+    void addComponent(EngineComponent* e);
+    EngineComponent* removeComponent(EngineComponent* e);
+    void updateAll();
     
 protected:
     EngineComponent(Engine* instance, long guid, int typeID);
     EngineComponent(ObjectInit& init);
-    EngineComponent(Engine* instance, long guid, int typeID, EngineComponent& parent);
-    EngineComponent(ObjectInit& init, EngineComponent& parent);
+    EngineComponent(Engine* instance, long guid, int typeID, EngineComponent* parent);
+    EngineComponent(ObjectInit& init, EngineComponent* parent);
     
 private:
     HashSet<EngineComponent> children;
+    EngineComponent* parent;
 };
 
 #endif /* ENGINECOMPONENT_H */
