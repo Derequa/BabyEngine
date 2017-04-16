@@ -1,16 +1,16 @@
-build/Debug/GNU-Linux/GameObject.o: GameObject.cpp GameObject.h Engine.h \
- HashMap.h EngineObject.h EngineComponent.h Transform.h Vector.h
+build/Debug/GNU-Linux/GameObject.o: GameObject.cpp GameObject.h \
+ EngineComponent.h EngineObject.h Transform.h Vector.h Engine.h HashMap.h
 
 GameObject.h:
 
-Engine.h:
-
-HashMap.h:
+EngineComponent.h:
 
 EngineObject.h:
-
-EngineComponent.h:
 
 Transform.h:
 
 Vector.h:
+
+Engine.h:
+
+HashMap.h:

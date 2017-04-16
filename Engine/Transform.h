@@ -10,13 +10,12 @@
  *
  * Created on April 15, 2017, 9:11 PM
  */
-
-#ifndef TRANSFORM_H
-#define TRANSFORM_H
+#pragma once
+//#ifndef TRANSFORM_H
+//#define TRANSFORM_H
 
 #define TRANSFORM_TYPE "Transform"
 
-#include "Engine.h"
 #include "EngineComponent.h"
 #include "Vector.h"
 #include <functional>
@@ -28,13 +27,15 @@ namespace baby {
         Vector position;
         Vector velocity;
         Vector acceleration;
-        float orientation;
+        Vector scale;
+        Vector orientation;
+        float angle;
         float angularVelocity;
         float angularAcceleration;
         static const std::string transform_id;
         
-        Transform(Engine* instance, long guid);
-        Transform(Engine* instance, long guid, EngineComponent* parent);
+        Transform(long guid);
+        Transform(long guid, EngineComponent* parent);
         ~Transform();
         
         void update();
@@ -59,12 +60,14 @@ namespace std
             res = 37 * res + vecHasher(t.position);
             res = 37 * res + vecHasher(t.velocity);
             res = 37 * res + vecHasher(t.acceleration);
-            res = 37 * res + fHasher(t.orientation);
+            res = 37 * res + vecHasher(t.scale);
+            res = 37 * res + vecHasher(t.orientation);
+            res = 37 * res + fHasher(t.angle);
             res = 37 * res + fHasher(t.angularVelocity);
             res = 37 * res + fHasher(t.angularAcceleration);
             return res;
         }
     };
 }
-#endif /* TRANSFORM_H */
+//#endif /* TRANSFORM_H */
 

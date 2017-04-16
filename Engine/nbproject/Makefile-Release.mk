@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/DebugObject.o \
 	${OBJECTDIR}/Engine.o \
 	${OBJECTDIR}/EngineComponent.o \
 	${OBJECTDIR}/EngineObject.o \
@@ -67,6 +68,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/engine: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/engine ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/DebugObject.o: DebugObject.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DebugObject.o DebugObject.cpp
 
 ${OBJECTDIR}/Engine.o: Engine.cpp
 	${MKDIR} -p ${OBJECTDIR}

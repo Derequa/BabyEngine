@@ -29,6 +29,7 @@ namespace baby {
 
         float mag();
         void normalize();
+        void set(float x, float y, float z);
         void mult(const float num);
         void div(const float num);
         void add(const Vector& v);

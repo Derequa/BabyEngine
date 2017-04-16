@@ -16,15 +16,9 @@
 namespace baby {
     Vector::Vector() : Vector(0.0f, 0.0f, 0.0f){}
     Vector::Vector(const Vector& orig) : Vector(orig.x, orig.y, orig.z){}
-    Vector::Vector(float x, float y, float z)
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-    }
-    
+    Vector::Vector(float x, float y, float z) { this->set(x, y, z); }
     Vector::~Vector(){}
-
+    
     float Vector::mag() { return (float) sqrt((x * x) + (y * y) + (z * z)); }
     
     void Vector::normalize()
@@ -32,6 +26,13 @@ namespace baby {
         float m = this->mag();
         this->div(m);
     }
+    
+     void Vector::set(float x, float y, float z)
+     {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+     }
     
     void Vector::mult(const float num)
     {

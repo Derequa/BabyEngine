@@ -4,9 +4,9 @@
  *
  * Created on April 15, 2017, 7:13 AM
  */
-
-#ifndef ENGINECOMPONENT_H
-#define ENGINECOMPONENT_H
+#pragma once
+//#ifndef ENGINECOMPONENT_H
+//#define ENGINECOMPONENT_H
 
 #include "EngineObject.h"
 #include <vector>
@@ -14,14 +14,9 @@
 #include <string>
 
 namespace baby {
-    
-    class EngineComponent;
-    
-    typedef std::vector<EngineComponent*> EngineComponentList;
-
 
     class EngineComponent : public EngineObject {
-
+        typedef std::vector<EngineComponent*> EngineComponentList;
     public:
 
         ~EngineComponent();
@@ -40,13 +35,11 @@ namespace baby {
         void updateAll();
 
     protected:
-        EngineComponent(Engine* instance, long guid, std::string typeID);
-        EngineComponent(ObjectInit& init);
-        EngineComponent(Engine* instance, long guid, std::string typeID, EngineComponent* parent);
-        EngineComponent(ObjectInit& init, EngineComponent* parent);
+        EngineComponent(long guid, std::string typeID);
+        EngineComponent(long guid, std::string typeID, EngineComponent* parent);
         std::vector<EngineComponent*> children;
         EngineComponent* parent;
     };
 }
-#endif /* ENGINECOMPONENT_H */
+//#endif /* ENGINECOMPONENT_H */
 

@@ -1,11 +1,17 @@
 #include "Engine.h"
+#include "GameObject.h"
+#include "DebugObject.h"
+#include <string>
+#include <stdlib.h>
+#include <ctime>
+#include <GL/freeglut.h>
 
 namespace baby {
 
     HashMap<long, EngineObject> Engine::objects;
     long Engine::guidCounter = 0;
     float Engine::deltaT = 0;
-    float Engine::lastTime = 0;
+    std::chrono::time_point<std::chrono::system_clock> Engine::lastTime = std::chrono::system_clock::now();
     
     Engine* Engine::instance = NULL;
 
@@ -15,7 +21,17 @@ namespace baby {
     
     void Engine::run(int thing)
     {
+        using namespace std::chrono;
+        microseconds dif = duration_cast<microseconds>(system_clock::now() - lastTime);
+        deltaT = (float)dif.count() / 1000.0f;
         // Redraw and wait again
+        for (long i = 0 ; i < Engine::guidCounter ; i++) {
+            if (!Engine::objects.containsKey(&i))
+                continue;
+            EngineObject* o = Engine::objects.get(&i);
+            o->update();
+        }
+        lastTime = std::chrono::system_clock::now();
 	glutPostRedisplay();
 	glutTimerFunc(25,Engine::run, 0);
     }
@@ -78,14 +94,21 @@ namespace baby {
 	//glutAddMenuEntry("Quit", 0);
 	//glutAddMenuEntry("Restart Game", 1);
 	//glutAttachMenu(GLUT_RIGHT_BUTTON);
-
+        DebugObject* o = new DebugObject(Engine::getNewGUID());
+        
+        for (long i = 0 ; i < Engine::guidCounter ; i++) {
+            if (!Engine::objects.containsKey(&i))
+                continue;
+            EngineObject* o = Engine::objects.get(&i);
+            o->setup();
+        }
 	// Set the update function (main game loop)
 	glutTimerFunc(25, Engine::run, 0);
 
 	// Enable backface stuff
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-
+        lastTime = std::chrono::system_clock::now();
 	// Start the glut main loop. glutMainLoop does not return :(
 	glutMainLoop();
     }
@@ -99,6 +122,17 @@ namespace baby {
 	glMatrixMode(GL_MODELVIEW);
 	// Reset the perspective
 	glLoadIdentity();
+        
+        for (long i = 0 ; i < Engine::guidCounter ; i++) {
+            if (!Engine::objects.containsKey(&i))
+                continue;
+            EngineObject* o = Engine::objects.get(&i);
+            if (GameObject* g = dynamic_cast<GameObject*>(o)) {
+                glPushMatrix();
+                    g->draw();
+                glPopMatrix();
+            }
+        }
 
 	glFlush();
 	//Send the 3D scene to the window
@@ -122,7 +156,10 @@ namespace baby {
         return Engine::objects.get(&guid);
     }
     
-    void Engine::addObject(long guid, EngineObject* object) {}
+    void Engine::addObject(EngineObject* object) 
+    {
+        Engine::objects.put(&object->guid, object);
+    }
     
     float Engine::getDeltaT() {return Engine::deltaT;}
 }

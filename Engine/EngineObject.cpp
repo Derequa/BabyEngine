@@ -1,24 +1,16 @@
 #include "EngineObject.h"
+#include "Engine.h"
 
 namespace baby {
     
-    EngineObject::EngineObject(Engine* instance, long guid, std::string typeID)
+    EngineObject::EngineObject(long guid, std::string typeID)
     {
-        this->engine = instance;
-        this->guid;
-        this->typeID;
+        this->guid = guid;
+        this->typeID = typeID;
+        Engine::addObject(this);
     }
 
-    EngineObject::EngineObject(ObjectInit& init) : EngineObject(init.engine, init.guid, init.typeID) {}
-
-    EngineObject::~EngineObject() { this->engine->removeObject(this->guid); }
-
-    size_t EngineObject::operator()( const EngineObject & key ) const
-    {
-        std::hash<long> hasher;
-        auto hash = hasher(key.guid);
-        return hash;
-    }
+    EngineObject::~EngineObject() { Engine::removeObject(this->guid); }
 
     bool EngineObject::operator==(const EngineObject & other ) const
     {

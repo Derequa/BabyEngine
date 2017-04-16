@@ -12,11 +12,12 @@
  */
 
 #include "EngineComponent.h"
+
 namespace baby {
-    EngineComponent::EngineComponent(Engine* instance, long guid, std::string typeID) : EngineComponent(instance, guid, typeID, NULL) {}
-    EngineComponent::EngineComponent(ObjectInit& init) : EngineComponent(init.engine, init.guid, init.typeID, NULL) {}
-    EngineComponent::EngineComponent(ObjectInit& init, EngineComponent* parent) : EngineComponent(init.engine, init.guid, init.typeID, parent) {}
-    EngineComponent::EngineComponent(Engine* instance, long guid, std::string typeID, EngineComponent* parent) : EngineObject(instance, guid, typeID) { this->parent = parent; }
+    
+    typedef std::vector<EngineComponent*> EngineComponentList;
+    EngineComponent::EngineComponent(long guid, std::string typeID) : EngineComponent(guid, typeID, NULL) {}
+    EngineComponent::EngineComponent(long guid, std::string typeID, EngineComponent* parent) : EngineObject(guid, typeID) { this->parent = parent; }
     
     EngineComponent::~EngineComponent()
     {

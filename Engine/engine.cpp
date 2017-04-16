@@ -1,8 +1,6 @@
-#include <GL/freeglut.h>
-#include <iostream>
 #include <stdlib.h>
-#include <time.h>
 #include "Engine.h"
+
 
 using namespace std;
 
@@ -16,6 +14,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
     baby::Engine::setup(argc, argv);
+    
     // For you my dear compiler
     return EXIT_SUCCESS;
 }

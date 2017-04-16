@@ -12,13 +12,15 @@
  */
 
 #include "GameObject.h"
+#include "Engine.h"
 
 namespace baby {
-    GameObject::GameObject(Engine* instance, long guid, std::string typeID) : GameObject(instance, guid, typeID, NULL) {}
-    GameObject::GameObject(ObjectInit& init) : GameObject(init.engine, init.guid, init.typeID, NULL) {}
-    GameObject::GameObject(ObjectInit& init, EngineComponent* parent) : GameObject(init.engine, init.guid, init.typeID, parent) {}
-    GameObject::GameObject(Engine* instance, long guid, std::string typeID, EngineComponent* parent) : EngineComponent(instance, guid, typeID, parent), transform(instance, instance->getNewGUID(), this)
+    GameObject::GameObject(long guid, std::string typeID) : GameObject(guid, typeID, NULL) {}
+    GameObject::GameObject(long guid, std::string typeID, EngineComponent* parent) : EngineComponent(guid, typeID, parent), transform(Engine::getNewGUID(), this)
     {
+        
         this->attachedToParent = false;
     }
+    
+    GameObject::~GameObject(){}
 }
