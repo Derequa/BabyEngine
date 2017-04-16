@@ -7,8 +7,11 @@
       <itemPath>Engine.h</itemPath>
       <itemPath>EngineComponent.h</itemPath>
       <itemPath>EngineObject.h</itemPath>
+      <itemPath>GameObject.h</itemPath>
       <itemPath>HashMap.h</itemPath>
       <itemPath>HashSet.h</itemPath>
+      <itemPath>Transform.h</itemPath>
+      <itemPath>Vector.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,6 +23,9 @@
       <itemPath>Engine.cpp</itemPath>
       <itemPath>EngineComponent.cpp</itemPath>
       <itemPath>EngineObject.cpp</itemPath>
+      <itemPath>GameObject.cpp</itemPath>
+      <itemPath>Transform.cpp</itemPath>
+      <itemPath>Vector.cpp</itemPath>
       <itemPath>engine.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -63,9 +69,21 @@
       </item>
       <item path="EngineObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HashMap.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HashSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Transform.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Transform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="engine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -102,9 +120,21 @@
       </item>
       <item path="EngineObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="HashMap.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HashSet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Transform.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Transform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="engine.cpp" ex="false" tool="1" flavor2="0">
       </item>

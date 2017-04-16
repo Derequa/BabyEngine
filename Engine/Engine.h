@@ -14,27 +14,39 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "HashMap.h"
 #include "EngineObject.h"
+#include <string>
+#include <stdlib.h>
 
-class Engine
+namespace baby
 {
-public:
-    ~Engine();
-    static const Engine& getInstance();
-    void run();
-    void setup();
-    void removeObject(long guid);
-    EngineObject getObject(long guid);
-    void addObject(long guid, EngineObject* object);
-    
-    
-protected:
-    Engine();
-    static Engine instance;
+    class EngineObject;
 
-private:
-    HashMap<long, EngineObject> objects;
-};
+    class Engine
+    {
+    public:
+        ~Engine();
+        static const Engine* getInstance();
+        void run();
+        void setup();
+        void removeObject(long guid);
+        EngineObject* getObject(long guid);
+        void addObject(long guid, EngineObject* object);
+        long getNewGUID();
+        int getTypeID(std::string className);
+
+    protected:
+        Engine();
+    private:
+        HashMap<long, EngineObject> objects;
+        HashMap<std::string, int> idMap;
+        static Engine* instance;
+        long guidCounter;
+        int idCounter;
+
+    };
+}
 
 
 #endif /* ENGINE_H */

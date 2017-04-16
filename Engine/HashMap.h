@@ -147,7 +147,7 @@ private:
                 for (BucketElement* b = bucks[i]; b->next != NULL;) {
                     BucketElement* del = b;
                     b = b->next;
-                    free(del);
+                    delete del;
                 }
             }
         }
@@ -165,11 +165,11 @@ private:
         BucketElement* prev = NULL;
         BucketElement* b = this->buckets[hash];
         while (b->next != NULL) {
-            if (b->key == element->key) {
+            if (*b->key == *element->key) {
                 if (prev != NULL) {
                     prev = element;
                     element->next = b->next;
-                    free(b);
+                    delete b;
                     return;
                 }
             }

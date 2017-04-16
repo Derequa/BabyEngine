@@ -38,6 +38,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Engine.o \
 	${OBJECTDIR}/EngineComponent.o \
 	${OBJECTDIR}/EngineObject.o \
+	${OBJECTDIR}/GameObject.o \
+	${OBJECTDIR}/Transform.o \
+	${OBJECTDIR}/Vector.o \
 	${OBJECTDIR}/engine.o
 
 
@@ -79,6 +82,21 @@ ${OBJECTDIR}/EngineObject.o: EngineObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineObject.o EngineObject.cpp
+
+${OBJECTDIR}/GameObject.o: GameObject.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameObject.o GameObject.cpp
+
+${OBJECTDIR}/Transform.o: Transform.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Transform.o Transform.cpp
+
+${OBJECTDIR}/Vector.o: Vector.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Vector.o Vector.cpp
 
 ${OBJECTDIR}/engine.o: engine.cpp
 	${MKDIR} -p ${OBJECTDIR}
