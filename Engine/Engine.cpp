@@ -2,41 +2,127 @@
 
 namespace baby {
 
+    HashMap<long, EngineObject> Engine::objects;
+    long Engine::guidCounter = 0;
+    float Engine::deltaT = 0;
+    float Engine::lastTime = 0;
+    
     Engine* Engine::instance = NULL;
 
-    Engine::Engine()
-    {
-        this->guidCounter = 0;
-        this->idCounter = 0;
-    }
+    Engine::Engine(){}
+    
     Engine::~Engine(){}
-    const Engine* Engine::getInstance()
+    
+    void Engine::run(int thing)
     {
-        if (Engine::instance == NULL) {
-           Engine::instance = new Engine();
-        }
-        return Engine::instance;
+        // Redraw and wait again
+	glutPostRedisplay();
+	glutTimerFunc(25,Engine::run, 0);
     }
-    void Engine::run(){}
-    void Engine::setup(){}
-    void Engine::removeObject(long guid) {}
-    long Engine::getNewGUID() { return this->guidCounter++; }
-    int Engine::getTypeID(std::string className)
+    
+    void Engine::setup(int argc, char** argv)
     {
-        if (this->idMap.containsKey(&className))
-            return *this->idMap.get(&className);
-        else {
-            int* id = static_cast<int*>(malloc(sizeof(int)));
-            *id = this->idCounter++;
-            std::string* s = new std::string(className);
-            this->idMap.put(s, id);
-            return *id;
-        }
+        // Initialize GLUT
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	// Set the window size
+	glutInitWindowSize(800, 800);
+
+	// Create a window
+	glutCreateWindow("Baby Engine");
+	// Ambient material property
+	float  amb[] = { 0, 0, 0, 1 };
+	// Ambient light property
+	float  lt_amb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	// Ambient light property
+	float  lt_dif[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	// Light position
+	float  lt_pos[] = { 0, .39392, .91914, 0 };
+	// Specular light property
+	float  lt_spc[] = { 0, 0, 0, 1 };
+
+	// Set default ambient light in scene
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
+	// Set Light 0 position, ambient, diffuse, specular intensities
+	glLightfv(GL_LIGHT0, GL_POSITION, lt_pos);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, lt_amb);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lt_dif);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, lt_spc);
+
+	// Enable Light 0 and GL lighting
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+
+	// Flat shading
+	glShadeModel(GL_FLAT);
+	// Normalize normals
+	glEnable(GL_NORMALIZE);
+
+	// Setup background colour
+	glClearDepth(1.0);
+	glClearColor(0, 0, 0, 0);
+	// Dark unkown magic to make 3D drawing work
+	glEnable(GL_DEPTH_TEST);
+
+	// Set handler functions for drawing, keypress, and window resize
+	glutDisplayFunc(Engine::draw);
+	//glutKeyboardFunc(handleKeypress);
+	//glutKeyboardUpFunc(handleKeyRelease);
+	//glutSpecialFunc(handleSpecialPress);
+	//glutSpecialUpFunc(handleSpecialRelease);
+	//glutReshapeFunc(handleResize);
+
+	// Make the menu
+	//glutCreateMenu(handle_menu);
+	//glutAddMenuEntry("Quit", 0);
+	//glutAddMenuEntry("Restart Game", 1);
+	//glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	// Set the update function (main game loop)
+	glutTimerFunc(25, Engine::run, 0);
+
+	// Enable backface stuff
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
+	// Start the glut main loop. glutMainLoop does not return :(
+	glutMainLoop();
     }
+    
+    void Engine::draw()
+    {
+        glEnable(GL_LIGHTING);
+	// Clear information from the last draw
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// Switch to the drawing perspective
+	glMatrixMode(GL_MODELVIEW);
+	// Reset the perspective
+	glLoadIdentity();
+
+	glFlush();
+	//Send the 3D scene to the window
+	glutSwapBuffers();
+    }
+    
+    void Engine::removeObject(long guid)
+    {
+        if (!Engine::objects.containsKey(&guid))
+            return;
+        EngineObject* obj = Engine::objects.remove(&guid);
+        delete obj;
+    }
+    
+    long Engine::getNewGUID() { return Engine::guidCounter++; }
+    
     EngineObject* Engine::getObject(long guid)
     {
-        return NULL;
+        if (!Engine::objects.containsKey(&guid))
+            return NULL;
+        return Engine::objects.get(&guid);
     }
+    
     void Engine::addObject(long guid, EngineObject* object) {}
-
+    
+    float Engine::getDeltaT() {return Engine::deltaT;}
 }

@@ -54,8 +54,14 @@
           <commandLine>-std=c++14</commandLine>
         </cTool>
         <ccTool>
+          <incDir>
+            <pElem>/usr/include</pElem>
+          </incDir>
           <commandLine>-std=c++14</commandLine>
         </ccTool>
+        <linkerTool>
+          <commandLine>-L/usr/lib/x86_64-linux-gnu -lGL -lglut -lGLU -lX11 -lm -lrt</commandLine>
+        </linkerTool>
       </compileType>
       <item path="Engine.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -66,42 +66,42 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/engine: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/engine ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/engine ${OBJECTFILES} ${LDLIBSOPTIONS} -L/usr/lib/x86_64-linux-gnu -lGL -lglut -lGLU -lX11 -lm -lrt
 
 ${OBJECTDIR}/Engine.o: Engine.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Engine.o Engine.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Engine.o Engine.cpp
 
 ${OBJECTDIR}/EngineComponent.o: EngineComponent.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineComponent.o EngineComponent.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineComponent.o EngineComponent.cpp
 
 ${OBJECTDIR}/EngineObject.o: EngineObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineObject.o EngineObject.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineObject.o EngineObject.cpp
 
 ${OBJECTDIR}/GameObject.o: GameObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameObject.o GameObject.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameObject.o GameObject.cpp
 
 ${OBJECTDIR}/Transform.o: Transform.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Transform.o Transform.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Transform.o Transform.cpp
 
 ${OBJECTDIR}/Vector.o: Vector.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Vector.o Vector.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Vector.o Vector.cpp
 
 ${OBJECTDIR}/engine.o: engine.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/engine.o engine.cpp
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/engine.o engine.cpp
 
 # Subprojects
 .build-subprojects:

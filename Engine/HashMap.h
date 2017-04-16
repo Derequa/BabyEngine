@@ -65,7 +65,7 @@ public:
                 b = b->next;
             }
         }
-        return (V)NULL;
+        return NULL;
     }
     
     V* remove(K* key)

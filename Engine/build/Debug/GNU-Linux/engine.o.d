@@ -1,10 +1,8 @@
-build/Debug/GNU-Linux/engine.o: engine.cpp HashMap.h HashSet.h \
- EngineObject.h Engine.h
+build/Debug/GNU-Linux/engine.o: engine.cpp Engine.h HashMap.h \
+ EngineObject.h
+
+Engine.h:
 
 HashMap.h:
 
-HashSet.h:
-
 EngineObject.h:
-
-Engine.h:

@@ -32,9 +32,9 @@ namespace baby {
         Transform* getTransform();
         
     protected:
-        GameObject(Engine* instance, long guid, int typeID);
+        GameObject(Engine* instance, long guid, std::string typeID);
         GameObject(ObjectInit& init);
-        GameObject(Engine* instance, long guid, int typeID, EngineComponent* parent);
+        GameObject(Engine* instance, long guid, std::string typeID, EngineComponent* parent);
         GameObject(ObjectInit& init, EngineComponent* parent);
     };
 }

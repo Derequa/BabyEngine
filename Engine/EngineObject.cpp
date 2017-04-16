@@ -2,7 +2,7 @@
 
 namespace baby {
     
-    EngineObject::EngineObject(Engine* instance, long guid, int typeID)
+    EngineObject::EngineObject(Engine* instance, long guid, std::string typeID)
     {
         this->engine = instance;
         this->guid;

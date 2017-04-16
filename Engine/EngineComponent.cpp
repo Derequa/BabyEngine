@@ -13,10 +13,10 @@
 
 #include "EngineComponent.h"
 namespace baby {
-    EngineComponent::EngineComponent(Engine* instance, long guid, int typeID) : EngineComponent(instance, guid, typeID, NULL) {}
+    EngineComponent::EngineComponent(Engine* instance, long guid, std::string typeID) : EngineComponent(instance, guid, typeID, NULL) {}
     EngineComponent::EngineComponent(ObjectInit& init) : EngineComponent(init.engine, init.guid, init.typeID, NULL) {}
     EngineComponent::EngineComponent(ObjectInit& init, EngineComponent* parent) : EngineComponent(init.engine, init.guid, init.typeID, parent) {}
-    EngineComponent::EngineComponent(Engine* instance, long guid, int typeID, EngineComponent* parent) : EngineObject(instance, guid, typeID) { this->parent = parent; }
+    EngineComponent::EngineComponent(Engine* instance, long guid, std::string typeID, EngineComponent* parent) : EngineObject(instance, guid, typeID) { this->parent = parent; }
     
     EngineComponent::~EngineComponent()
     {
@@ -31,7 +31,7 @@ namespace baby {
         return this->parent;
     }
 
-    EngineComponent* EngineComponent::getComponent(int typeID)
+    EngineComponent* EngineComponent::getComponent(std::string typeID)
     {
         EngineComponentList::iterator it;
         for (it = this->children.begin() ; it < this->children.end() ; it++) {
@@ -46,7 +46,7 @@ namespace baby {
         return this->children;
     }
 
-    EngineComponentList* EngineComponent::getComponents(int typeID)
+    EngineComponentList* EngineComponent::getComponents(std::string typeID)
     {
         EngineComponentList* ret = new EngineComponentList();
         EngineComponentList::iterator it;
@@ -57,7 +57,7 @@ namespace baby {
         return ret;
     }
 
-    EngineComponent* EngineComponent::getComponentInChildren(int typeID)
+    EngineComponent* EngineComponent::getComponentInChildren(std::string typeID)
     {
         EngineComponent* res = this->getComponent(typeID);
         if (res != NULL)
@@ -69,7 +69,7 @@ namespace baby {
         }
     }
 
-    EngineComponentList* EngineComponent::getComponentsInChildren(int typeID)
+    EngineComponentList* EngineComponent::getComponentsInChildren(std::string typeID)
     {
         EngineComponentList* myList = this->getComponents(typeID);
         EngineComponentList::iterator it;
@@ -81,13 +81,13 @@ namespace baby {
         return myList;
     }
 
-    EngineComponent* EngineComponent::getComponentInParent(int typeID)
+    EngineComponent* EngineComponent::getComponentInParent(std::string typeID)
     {
         throw "DONT DO THIS";
         return NULL;
     }
 
-    EngineComponentList* getComponentsInParent(int typeID)
+    EngineComponentList* getComponentsInParent(std::string typeID)
     {
         throw "DONT DO THIS";
         return NULL;

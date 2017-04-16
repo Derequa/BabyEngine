@@ -11,6 +11,7 @@
 #include "Engine.h"
 #include <cstddef>
 #include <functional>
+#include <string>
 
 namespace baby {
     class Engine;
@@ -18,13 +19,13 @@ namespace baby {
     struct ObjectInit {
         Engine* engine;
         long guid;
-        int typeID;
+        std::string typeID;
     };
 
     class EngineObject {
     public:
         long guid;
-        int typeID;
+        std::string typeID;
         Engine* engine;
 
         virtual ~EngineObject();
@@ -35,7 +36,7 @@ namespace baby {
         bool operator==(const EngineObject & other ) const;
 
     protected:
-        EngineObject(Engine* instance, long guid, int typeID);
+        EngineObject(Engine* instance, long guid, std::string typeID);
         EngineObject(ObjectInit& init);
 
 

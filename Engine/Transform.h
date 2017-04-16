@@ -31,6 +31,7 @@ namespace baby {
         float orientation;
         float angularVelocity;
         float angularAcceleration;
+        static const std::string transform_id;
         
         Transform(Engine* instance, long guid);
         Transform(Engine* instance, long guid, EngineComponent* parent);
@@ -40,11 +41,9 @@ namespace baby {
         void setup();
         
         //std::size_t operator()(const Transform& v) const;
-        bool operator==(const Transform& v) const;
-        bool operator!=(const Transform& v) const;
-        Transform& operator=(const Transform& v);
-    private:
-        static int TRANSFORM_ID;
+        bool operator==(const Transform& t) const;
+        bool operator!=(const Transform& t) const;
+        Transform& operator=(const Transform& t);
     };
 }
 

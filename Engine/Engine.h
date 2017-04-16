@@ -18,6 +18,7 @@
 #include "EngineObject.h"
 #include <string>
 #include <stdlib.h>
+#include <GL/freeglut.h>
 
 namespace baby
 {
@@ -27,23 +28,23 @@ namespace baby
     {
     public:
         ~Engine();
-        static const Engine* getInstance();
-        void run();
-        void setup();
+        static void run(int thing);
+        static void setup(int argc, char** argv);
+        static void draw();
         void removeObject(long guid);
-        EngineObject* getObject(long guid);
-        void addObject(long guid, EngineObject* object);
-        long getNewGUID();
-        int getTypeID(std::string className);
+        static EngineObject* getObject(long guid);
+        static void addObject(long guid, EngineObject* object);
+        static long getNewGUID();
+        static float getDeltaT();
 
     protected:
         Engine();
     private:
-        HashMap<long, EngineObject> objects;
-        HashMap<std::string, int> idMap;
+        static HashMap<long, EngineObject> objects;
         static Engine* instance;
-        long guidCounter;
-        int idCounter;
+        static long guidCounter;
+        static float deltaT;
+        static float lastTime;
 
     };
 }
