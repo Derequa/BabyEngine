@@ -39,6 +39,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Engine.o \
 	${OBJECTDIR}/EngineComponent.o \
 	${OBJECTDIR}/EngineObject.o \
+	${OBJECTDIR}/Event.o \
+	${OBJECTDIR}/EventListener.o \
+	${OBJECTDIR}/EventManager.o \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/Transform.o \
 	${OBJECTDIR}/Vector.o \
@@ -88,6 +91,21 @@ ${OBJECTDIR}/EngineObject.o: EngineObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EngineObject.o EngineObject.cpp
+
+${OBJECTDIR}/Event.o: Event.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Event.o Event.cpp
+
+${OBJECTDIR}/EventListener.o: EventListener.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventListener.o EventListener.cpp
+
+${OBJECTDIR}/EventManager.o: EventManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventManager.o EventManager.cpp
 
 ${OBJECTDIR}/GameObject.o: GameObject.cpp
 	${MKDIR} -p ${OBJECTDIR}

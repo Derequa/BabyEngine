@@ -8,6 +8,9 @@
       <itemPath>Engine.h</itemPath>
       <itemPath>EngineComponent.h</itemPath>
       <itemPath>EngineObject.h</itemPath>
+      <itemPath>Event.h</itemPath>
+      <itemPath>EventListener.h</itemPath>
+      <itemPath>EventManager.h</itemPath>
       <itemPath>GameObject.h</itemPath>
       <itemPath>HashMap.h</itemPath>
       <itemPath>HashSet.h</itemPath>
@@ -25,6 +28,9 @@
       <itemPath>Engine.cpp</itemPath>
       <itemPath>EngineComponent.cpp</itemPath>
       <itemPath>EngineObject.cpp</itemPath>
+      <itemPath>Event.cpp</itemPath>
+      <itemPath>EventListener.cpp</itemPath>
+      <itemPath>EventManager.cpp</itemPath>
       <itemPath>GameObject.cpp</itemPath>
       <itemPath>Transform.cpp</itemPath>
       <itemPath>Vector.cpp</itemPath>
@@ -81,6 +87,18 @@
       </item>
       <item path="EngineObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Event.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameObject.h" ex="false" tool="3" flavor2="0">
@@ -135,6 +153,18 @@
       <item path="EngineObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EngineObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Event.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
       </item>

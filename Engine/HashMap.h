@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <functional>
 #include <string>
+#include <vector>
+#include <iterator>
 #define DEFAULT_BUCKETS 10
 #define BUCKET_THRESHOLD 0.75
 
@@ -82,6 +84,13 @@ public:
                     else
                         this->buckets[hash] = b->next;
                     delete b;
+                    // TODO find a better way
+                    for (typename std::vector<K*>::iterator it = this->keys.begin() ; it < this->keys.end() ; it++){
+                        if (*key == **it){
+                            this->keys.erase(it);
+                            break;
+                        }
+                    }
                     this->size--;
                     return v;
                 }
@@ -91,6 +100,8 @@ public:
         }
         return NULL;
     }
+    
+    std::vector<K*> getKeys() { return this->keys; }
 
 private:
     class BucketElement
@@ -108,6 +119,7 @@ private:
     int size;
     int maxSize;
     int numBuckets;
+    std::vector<K*> keys;
 
     void maintain()
     {
@@ -159,6 +171,7 @@ private:
         if (this->buckets[hash] == NULL) {
             this->buckets[hash] = element;
             this->size++;
+            this->keys.push_back(element->key);
             return;
         }
 
@@ -177,6 +190,7 @@ private:
             b = b->next;
         }
         b->next = element;
+        this->keys.push_back(element->key);
         this->size++;
     }
 
